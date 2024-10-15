@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #2c3e50;
+  padding: 15px 20px;
+  color: white;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-size: 1.8rem;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.navbar-toggler {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: -250px;
+  width: 250px;
+  height: calc(100% - 70px);
+  background-color: #34495e;
+  transition: 0.3s;
+  overflow-y: auto;
+  color: white;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: 1px solid #465c71;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #465c71;
+}
+
+.sidebar-menu li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.sidebar-menu li a i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-dropdown > a {
+  cursor: pointer;
+}
+
+.sidebar-submenu {
+  display: none;
+  list-style-type: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.sidebar-dropdown.active > .sidebar-submenu {
+  display: block;
+}
+
+.sidebar-submenu li {
+  padding: 10px 0;
+  border-bottom: none;
+}
+
+.sidebar-submenu li a {
+  font-size: 0.9rem;
+}
+
+.fa-chevron-down {
+  float: right;
+  transition: 0.3s;
+}
+
+.sidebar-dropdown.active > a > .fa-chevron-down {
+  transform: rotate(180deg);
+}
+
+.content {
+  margin-left: 0;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.content.active {
+  margin-left: 250px;
+}

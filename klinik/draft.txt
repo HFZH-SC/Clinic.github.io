@@ -1,0 +1,111 @@
+Buat database, dan tabel-tabelnya
+Isi database dengan data yang tersedia
+Buat folder untuk file ujikom
+Buat index.php sebagai entry point ke web
+Buat folder assets yang dalamnya scripts dan styles untuk menyimpan file javascript dan css                                     (optional)
+Buat file main.js dan letakkan dalam folder scripts, serta buat styles.css dan letakkan dalam folder styles
+Buat file connection.php untuk mengelola query database
+Buat file component_template.php untuk menampung element html supaya tidak dituliskan berulang-ulang                            (optional)
+Buat file form_template.php untuk menampung element form supaya bisa dipanggil untuk add dan edit                               (optional)
+Buat file data_dokter.php, data_pasien.php, data_poli.php, data_berobat.php sebagai halaman yang akan ditampilkan
+Buat file laporan_dokter.php, laporan_pasien.php, laporan_poli.php, laporan_berobat.php sebagai halaman yang akan ditampilkan
+Buat file add.php, edit.php, dan delete.php untuk menerima semua request saat kita ingin menambahkan / mengedit / menghapus
+
+
+
+Urutan Pembuatan website
+1. Masukkan tag html di index.php, disini ada 2 bagian main dan aside (navigasi) nanti navigasinya bisa kita tulis di 
+        component_template.php supaya bisa dipanggil berulang kali
+
+2. Hubungkan file index.php dengan styles.css (<link>) lalu buat style sederhana untuk mengatur layout website
+
+3. Tulis syntax mysqli_connect("localhost", "root", "", "nama_database"); pada connection.php dan hubungkan ke file 
+        data_dokter.php dengan syntax <?php require_once "connection.php"?> lalu coba query sederhana untuk menguji apakah php
+        terhubung dengan mysql lalu hasil query di masukkan ke var_dump() untuk mencetak ke layar
+
+4. Buat beberapa variable yang menampung hasil query setiap table di connection.php dan buat fungsi untuk men-generate id baru
+        untuk input
+
+5. Pada component_template.php buat beberapa function data_dokter(), data_pasien(), data_poli(), data_berobat()
+        yang masing-masing isinya adalah element html yang akan ditampilkan di data_dokter, data_pasien, data_poli, data_berobat
+        laporan_dokter, laporan_pasien, laporan_poli, laporan_berobat yang isinya adalah tag <h2>, <a>, dan <table>               (optional)
+
+6. Pada data_dokter, data_pasien, data_poli, data_berobat, laporan_dokter, laporan_pasien, laporan_poli, laporan_berobat dalam 
+        tag <main> buat tag <h2>, <a>, <table> (KALAU SKIP LANGKAH KE-5)
+
+7. Gunakan variable dari connection.php yang isinya query, sesuaikan dengan isi page, misal : $query_dokter di page data_dokter
+
+8. Cetak dengan mysqli_fetch_assoc() dalam while() panggil data dalam tag <td> misal : <td> $fetch["nm_pasien"] </td>
+
+9. Jangan lupa membuat kolom untuk id dan action button (delete / edit) berbentuk tag <a> dengan attribut href sebagai berikut
+        <a href="edit.php?view=dokter&id=<?= $fetch["dokter_id"]?>">Edit</a>
+        <a href="delete.php?view=dokter&id=<?= $fetch["dokter_id"]?>">Delete</a>
+        sesuaikan dengan page yang ingin ditampilkan
+
+10. Buat form yang akan ditampilkan di add.php, edit.php pada file form_template.php                                                (optional)
+
+11. Buat file yang spesifik untuk add atau edit setiap data, 2 file * 4 data = 8 file (KALAU SKIP LANGKAH KE-10)
+
+12. kita masukkan tag html kedalam add.php dan edit.php karena kita ingin menampilkan kedua halaman tersebut
+
+13. Buat form untuk mengisi data dokter, data pasien, data poli, dan data berobat, bentuk ke dalam function yang
+        dan kita panggil di add.php dan edit.php jika kita punya form_template.php
+
+14. Untuk memberitahu php form apa yang akan ditampilkan di add/edit.php kita menggunakan query, tag <a> diarahkan
+        ke page add/edit.php dengan diberi "label / view / terserah" yang valuenya akan kita pake untuk menentukan
+        form mana yang tampil, contoh : Localhost/ujikom/add.php?label=dokter (menampilkan form dokter)
+
+15. Dalam file add/edit.php kita ambil query tersebut dan masukkan kedalam if statement, if($_GET["label]== "dokter")
+        disini bila label = dokter maka kita panggil function untuk menampilkan form dokter
+
+16. Kita buat function untuk menghandle form yang kita kirim agar dapat kita masukkan datanya ke database
+
+17. Kita kirim form dengan method post dan kita check dengan if(isset($_POST["submit"])) lalu kita panggil fungsi
+        handle tersebut
+
+18. Agar kita dapat menghandle berbagai submit form data, kita buat button type submitnya dengan value, value ini
+        disesuaikan sebagai identitas dari form tersebut lalu dalam if statement yang ada fungsi issetnya kita  
+        buat if lagi, if($_POST["submit"] == "dokter") baru kita panggil fungsi handlenya
+
+19. Untuk edit, yang perlu kita perhatikan adalah cara kita untuk men-generate data spesifik yang kita klik
+        kita bisa copy if-if statement yang ada dalam add.php lalu kita tambahkan variable id dalam parameter
+        functionnya
+
+20. Dalam fungsi templating formnya kita tambahkan 1 parameter untuk menampung nilai id, lalu kita generate datanya
+        dengan menggunakan "where" di syntax sqlnya, kita tampung hasil querynya dalam variable-variable yang punya
+        operator ternary dan variable-variable itu kita "echo" dalam tag inputnya
+
+21. Kita ubah fungsi-fungsi untuk handle datanya, tambahkan parameter opsional yaitu $id = "", kita check bila $id
+        kosong isinya maka user ingin menambahkan data, bila tidak maka user ingin mengedit data, kita tampilkan
+        error / success message sebagai pesan di halaman tersebut
+
+22. Jangan lupa, kita perlu mengirimkan id untuk edit. Untuk melakukan itu kita bisa tambahkan query lagi, edit.php?
+        view=dokter&id=DR-001 (DR-001 yang kita klik dan ingin kita edit)
+
+23. Untuk delete, cukup sederhana. kita isi delete.php dengan isi file edit.php, hapus bagian if $_POST nya hapus fungsi
+        fungsi yang kita panggil, kita jalankan query mysql untuk delete data dengan "where" dan kita gunakan id dari
+        querynya
+
+24. Jangan lupa link yang mengarahkan kita ke delete.php kita beri javascript untuk mengkonfirmasi apakah kita benar
+        ingin menghapus data, onclick = return confirm('anda ingin menghapus data <?= $result["id"]?>')
+
+Syntax Function yang akan digunakan
+        $index = mysqli_fetch_row(mysqli_query($conn, "Select poli_id from poli order by poli_id desc limit 1"))[0];
+        $imp = explode("-",$str);
+        $sub = intval($imp[1])+1;
+        $len = strlen($imp[1]);
+        $imp[0]."-".str_pad($sub,$len,"0", STR_PAD_LEFT);
+
+Syntax diatas dipakai untuk men-generate poli_id
+
+        $tgl_lahir = implode("-",$_POST["tgl_lahir"])
+        date("Y-m-d",strtotime($tgl_lahir))
+
+Syntax diatas dipakai untuk membuat format tanggal untuk dimasukkan ke database
+
+        floor((strtotime($tanggal_berobat) - strtotime($tgl_lahir)) / 31_536_000)
+
+Syntax diatas dipakai untuk menghitung usia dari pasien pada data_berobat & laporan_berobat
+
+        date("F", mktime(0,0,0,$i+1,0,0));                                                                                           (optional)
+

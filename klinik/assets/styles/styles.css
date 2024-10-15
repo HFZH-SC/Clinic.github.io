@@ -1,0 +1,199 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+}
+body{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+aside{  
+    width: 250px;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+main{
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h1, h2 {
+    color: #d4c5c5;
+}
+.content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 250px;
+    transition: 0.3s;
+}
+.content.active {
+    margin-left: 0;
+}
+.adddata {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.adddata:hover {
+    background-color: #45a049;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+table th, table td{
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+table th{
+    background-color: #4CAF50;
+    color: white;
+}
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+table tr:hover{
+    background-color: #ddd;
+}
+.action{
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: opacity 0.3s;
+}
+.action:nth-child(1){
+    background-color: #2196F3;
+}
+.action:nth-child(2){
+    background-color: #f44336;
+}
+.action:hover{
+    opacity: 0.8;
+}
+.dialog.open form{
+    display: flex;
+    flex-direction: column;
+}
+.dialog.open input,select{
+    margin-bottom: 1rem;
+    height: 2rem;
+    padding-inline-start: 10px;
+}
+.dialog.open button{
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+}
+.dialog.open form div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.dialog.open form div label{
+    font-weight: bold;
+}
+.dialog.open form div input,select{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.dialog.open form div input[type="submit"]{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        margin-left: 0;
+    }
+}
+
+h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.home-content {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/clinic-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.home-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.stat-box {
+    background-color: rgba(22, 17, 17, 0.486);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 150px;
+    text-align: center;
+}
+
+.stat-box h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #faf9f9;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: #f3eeee;
+}
+
+.pasien {
+    border: 2px solid #3498db;
+}
+
+.obat {
+    border: 2px solid #2ecc71;
+}
+
+.home-overlay h1 {
+    color: white;
+}
